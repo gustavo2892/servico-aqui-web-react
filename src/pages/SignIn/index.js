@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import { FiMail, FiLock } from 'react-icons/fi';
 
+import Input from '../../components/Input';
 import { Container, Content, AnimationContainer } from './styles';
 
 import { signInRequest } from '~/store/modules/auth/actions';
@@ -34,13 +36,25 @@ export default function SignIn() {
           </Link>
 
           <Form schema={schema} onSubmit={handleSubmit}>
-            <Input name="email" type="email" placeholder="Seu e-mail" />
-            <Input name="password" type="password" placeholder="Sua senha" />
-            <button type="submit">{loading ? 'Carregando...' : 'ACESSAR'}</button>
+            <Input
+              name="email"
+              type="email"
+              placeholder="Seu e-mail"
+              icon={FiMail}
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Sua senha"
+              icon={FiLock}
+            />
+            <button type="submit">
+              {loading ? 'Carregando...' : 'ACESSAR'}
+            </button>
             <Link to="/register">Criar uma nova conta</Link>
           </Form>
         </AnimationContainer>
       </Content>
-    </ Container>
+    </Container>
   );
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 
+import Input from '../../components/Input';
 import logo from '~/assets/logo.svg';
 
 import { Container, Content, AnimationContainer } from './styles';
@@ -35,14 +37,24 @@ export default function SignUp() {
           </Link>
 
           <Form schema={schema} onSubmit={handleSubmit}>
-            <Input name="name" placeholder="Nome completo" />
-            <Input name="email" type="email" placeholder="Seu e-mail" />
-            <Input name="password" type="password" placeholder="Sua senha" />
+            <Input name="name" placeholder="Nome completo" icon={FiUser} />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Seu e-mail"
+              icon={FiMail}
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Sua senha"
+              icon={FiLock}
+            />
             <button type="submit">CRIAR CONTA</button>
             <Link to="/">Já possuo uma conta</Link>
           </Form>
         </AnimationContainer>
       </Content>
-    </ Container>
+    </Container>
   );
 }

@@ -10,20 +10,6 @@ export const Container = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
-    input {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
-      height: 44px;
-      padding: 0 15px;
-      color: #fff;
-      margin: 0 0 10px;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-    }
-
     span {
       color: #ed3e68;
       align-self: flex-start;
@@ -39,7 +25,7 @@ export const Container = styled.div`
     }
 
     button {
-      margin: 5px 0 0;
+      margin: 8px 0 0;
       height: 44px;
       background: #007fff;
       font-weight: bold;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
+import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 
+import Input from '../../components/Input';
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
@@ -26,19 +28,31 @@ export default function Profile() {
       <Form initialData={profile} onSubmit={handleSubmit}>
         <AvatarInput name="avatar_id" />
 
-        <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu endereço de e-mail" />
+        <Input name="name" placeholder="Nome completo" icon={FiUser} />
+        <Input
+          name="email"
+          type="email"
+          placeholder="Seu endereço de e-mail"
+          icon={FiMail}
+        />
         <hr />
         <Input
           name="oldPassword"
           type="password"
           placeholder="Sua senha atual"
+          icon={FiLock}
         />
-        <Input name="password" type="password" placeholder="Nova senha" />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Nova senha"
+          icon={FiLock}
+        />
         <Input
           name="confirmPassword"
           type="password"
           placeholder="Confirmação de senha"
+          icon={FiLock}
         />
 
         <button type="submit">ATUALIZAR PERFIL</button>

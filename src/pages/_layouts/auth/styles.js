@@ -20,7 +20,7 @@ export const Content = styled.div`
     margin-top: 30px;
 
     button {
-      margin: 5px 0 0;
+      margin: 8px 0 0;
       height: 44px;
       background: #007fff;
       font-weight: bold;
@@ -32,20 +32,6 @@ export const Content = styled.div`
 
       &:hover {
         background: ${shade(0.2, '#007fff')};
-      }
-    }
-
-    input {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
-      height: 44px;
-      padding: 0 15px;
-      color: #fff;
-      margin: 0 0 10px;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
       }
     }
 
