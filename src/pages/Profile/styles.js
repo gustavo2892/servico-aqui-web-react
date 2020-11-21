@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   max-width: 600px;
@@ -41,7 +41,7 @@ export const Container = styled.div`
     button {
       margin: 5px 0 0;
       height: 44px;
-      background: #2f0a96;
+      background: #007fff;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -50,7 +50,7 @@ export const Container = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.03, '#2f0a96')};
+        background: ${shade(0.2, '#007fff')};
       }
     }
   }
@@ -68,7 +68,7 @@ export const Container = styled.div`
     transition: background 0.2s;
 
     &:hover {
-      background: ${darken(0.08, '#fc5179')};
+      background: ${shade(0.2, '#fc5179')};
     }
   }
 `;

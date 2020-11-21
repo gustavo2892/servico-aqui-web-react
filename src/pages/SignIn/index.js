@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { Container, Content, AnimationContainer } from './styles';
+
 import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
@@ -24,15 +26,21 @@ export default function SignIn() {
   }
 
   return (
-    <>
-      <img src={logo} width="90" height="70" alt="GoBarber" />
+    <Container>
+      <Content>
+        <AnimationContainer>
+          <Link to="/">
+            <img src={logo} width="150" height="130" alt="ServiçoAqui" />
+          </Link>
 
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
-        <button type="submit">{loading ? 'Carregando...' : 'ACESSAR'}</button>
-        <Link to="/register">Criar uma nova conta</Link>
-      </Form>
-    </>
+          <Form schema={schema} onSubmit={handleSubmit}>
+            <Input name="email" type="email" placeholder="Seu e-mail" />
+            <Input name="password" type="password" placeholder="Sua senha" />
+            <button type="submit">{loading ? 'Carregando...' : 'ACESSAR'}</button>
+            <Link to="/register">Criar uma nova conta</Link>
+          </Form>
+        </AnimationContainer>
+      </Content>
+    </ Container>
   );
 }

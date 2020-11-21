@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
 
+import { Container, Content, AnimationContainer } from './styles';
 import { signUpRequest } from '~/store/modules/auth/actions';
 
 const schema = Yup.object().shape({
@@ -26,16 +27,22 @@ export default function SignUp() {
   }
 
   return (
-    <>
-      <img src={logo} width="90" height="70" alt="GoBarber" />
+    <Container>
+      <Content>
+        <AnimationContainer>
+          <Link to="/">
+            <img src={logo} width="150" height="130" alt="ServiçoAqui" />
+          </Link>
 
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Nome completo" />
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input name="password" type="password" placeholder="Sua senha" />
-        <button type="submit">CRIAR CONTA</button>
-        <Link to="/">Já possuo uma conta</Link>
-      </Form>
-    </>
+          <Form schema={schema} onSubmit={handleSubmit}>
+            <Input name="name" placeholder="Nome completo" />
+            <Input name="email" type="email" placeholder="Seu e-mail" />
+            <Input name="password" type="password" placeholder="Sua senha" />
+            <button type="submit">CRIAR CONTA</button>
+            <Link to="/">Já possuo uma conta</Link>
+          </Form>
+        </AnimationContainer>
+      </Content>
+    </ Container>
   );
 }

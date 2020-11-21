@@ -1,5 +1,5 @@
 <h1 align="center">
-  ServiçoAqui Web
+  ServiçoAqui Web Frontend
   <div>
     <img src="https://img.shields.io/badge/-ReactJS-blue" />
     <img src="https://img.shields.io/badge/-React%20Redux-blueviolet" />
@@ -21,10 +21,8 @@ Aplicação desenvolvida utilizando as tecnologias e padrões de projeto mais ut
 
 ## Instalação
 
-_Antes de rodar essa aplicação certifique-se que o [backend](https://github.com/gustavo2892/servico-aqui-server-node) também esteja rodando!_
-
 1. Abra seu terminal em uma pasta qualquer e clone este repositório
-`git clone https://github.com/gustavo2892/servico-aqui-web-react.git`.
-3. Navegue até o diretório da aplicação `cd servico-aqui-web-react`.
+`git clone repositório`.
+3. Navegue até o diretório da aplicação `cd pasta-da-aplicação`.
 4. Rode `yarn` ou `npm i` para instalar todas as dependências.<br />
 5. Rode `yarn start` ou `npm run start` e aguarde o sistema ser aberto em `http://localhost:3000`.

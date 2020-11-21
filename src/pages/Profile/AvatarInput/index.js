@@ -3,6 +3,7 @@ import { useField } from '@rocketseat/unform';
 import api from '~/services/api';
 
 import { Container } from './styles';
+import avatar from '~/assets/avatar.png';
 
 export default function AvatarInput() {
   const { defaultValue, registerField, fieldName } = useField('avatar');
@@ -40,7 +41,7 @@ export default function AvatarInput() {
       <label htmlFor="avatar">
         <img
           src={
-            preview || 'https://api.adorable.io/avatars/120/abott@adorable.png'
+            preview || avatar
           }
           alt=""
         />

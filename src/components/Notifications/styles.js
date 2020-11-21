@@ -4,6 +4,7 @@ import { lighten } from 'polished';
 
 export const Container = styled.div`
   position: relative;
+  z-index: 10;
 `;
 
 export const Badge = styled.button`
@@ -80,7 +81,7 @@ export const Notification = styled.div`
     font-size: 12px;
     border: 0;
     background: none;
-    color: ${lighten(0.2, '#5729d9')};
+    color: ${lighten(0.2, '#007fff')};
   }
 
   ${props =>
