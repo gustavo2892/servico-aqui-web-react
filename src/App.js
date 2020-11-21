@@ -9,6 +9,7 @@ import './config/ReactotronConfig';
 
 import Routes from './routes';
 import history from './services/history';
+import AppProvider from './hooks';
 
 import { store, persistor } from './store';
 
@@ -19,9 +20,11 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Router history={history}>
-          <Routes />
-          <GlobalStyle />
-          <ToastContainer autoClose={3000} />
+          <AppProvider>
+            <Routes />
+            <GlobalStyle />
+            <ToastContainer autoClose={3000} />
+          </AppProvider>
         </Router>
       </PersistGate>
     </Provider>

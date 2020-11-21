@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@rocketseat/unform';
 import { FiMail, FiUser, FiLock } from 'react-icons/fi';
 
-import Input from '../../components/Input';
+import Input from './Input';
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
