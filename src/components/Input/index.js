@@ -1,5 +1,5 @@
 import React from 'react';
-import { useField } from '@rocketseat/unform';
+import { useField, Input } from '@rocketseat/unform';
 import { FiAlertCircle } from 'react-icons/fi';
 import { Container, Error } from './styles';
 
@@ -9,7 +9,7 @@ const InputContainer = ({ name, icon: Icon, type, placeholder }) => {
   return (
     <Container>
       {Icon && <Icon size={20} />}
-      <input
+      <Input
         name={name}
         placeholder={placeholder}
         autoComplete="off"

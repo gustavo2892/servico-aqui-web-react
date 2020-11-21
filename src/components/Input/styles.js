@@ -15,6 +15,10 @@ export const Container = styled.div`
     margin-top: 8px;
   }
 
+  span {
+    color: #fff;
+  }
+
   input {
     flex: 1;
     background: transparent;

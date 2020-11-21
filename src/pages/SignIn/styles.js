@@ -46,6 +46,10 @@ export const AnimationContainer = styled.div`
       margin-bottom: 24px;
     }
 
+    span {
+      visibility: hidden;
+    }
+
     a {
       color: #f4ede8;
       display: block;

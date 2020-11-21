@@ -35,7 +35,12 @@ export default function SignIn() {
             <img src={logo} width="150" height="130" alt="ServiçoAqui" />
           </Link>
 
-          <Form schema={schema} onSubmit={handleSubmit}>
+          <Form
+            schema={schema}
+            onSubmit={handleSubmit}
+            onError={false}
+            onErrorCapture={false}
+          >
             <Input
               name="email"
               type="email"
