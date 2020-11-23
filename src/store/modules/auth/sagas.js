@@ -17,6 +17,8 @@ export function* signIn({ payload }) {
 
     const { token, user } = response.data;
 
+    console.log('Esse é o user => ', user);
+
     if (!user.provider) {
       toast.error('Usuário não é prestador');
       return;
@@ -35,11 +37,12 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
   try {
-    const { name, email, password } = payload;
+    const { name, email, whatsapp, password } = payload;
 
     yield call(api.post, 'users', {
       name,
       email,
+      whatsapp,
       password,
       provider: true,
     });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@rocketseat/unform';
-import { FiMail, FiUser, FiLock } from 'react-icons/fi';
+import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
 
 import Input from './Input';
 import { signOut } from '~/store/modules/auth/actions';
@@ -22,7 +22,7 @@ export default function Profile() {
   function handleSignOut() {
     dispatch(signOut());
   }
-
+  console.log('Esse é o profile => ', profile);
   return (
     <Container>
       <Form initialData={profile} onSubmit={handleSubmit}>
@@ -34,6 +34,11 @@ export default function Profile() {
           type="email"
           placeholder="Seu endereço de e-mail"
           icon={FiMail}
+        />
+        <Input
+          name="whatsapp"
+          placeholder="Seu WhatsApp"
+          icon={FiPhone}
         />
         <hr />
         <Input
