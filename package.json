@@ -16,6 +16,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-icomoon": "^2.1.5",
     "react-icons": "^3.8.0",
     "react-input-mask": "^2.0.4",
     "react-perfect-scrollbar": "^1.5.3",
