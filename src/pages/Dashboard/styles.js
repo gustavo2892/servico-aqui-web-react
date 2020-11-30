@@ -30,6 +30,7 @@ export const Container = styled.div`
     grid-gap: 15px;
     margin-top: 30px;
   }
+  
 `;
 
 export const Time = styled.li`

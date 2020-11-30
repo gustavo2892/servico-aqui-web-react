@@ -15,6 +15,7 @@ import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
+import whatsappIcon from '../../assets/whatsapp.png'
 
 import { Container, Time } from './styles';
 
@@ -84,7 +85,14 @@ export default function Dashboard() {
           <Time key={time.time} past={time.past} available={!time.appointment}>
             <strong>{time.time}</strong>
             <span>
-              {time.appointment ? time.appointment.user.name : 'Em aberto'}
+              {time.appointment ? 
+              <div style={{height:'20px'}}>
+               {time.appointment.user.name }
+                <button style={{float:'right', marginTop:-15, border:'none', backgroundColor:'transparent'}}>
+                  <img src={whatsappIcon} style={{width: 20, border:'none'}}></img>
+                </button>
+              </div>
+              : 'Em aberto'}
             </span>
           </Time>
         ))}
