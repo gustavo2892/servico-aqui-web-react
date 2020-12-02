@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@rocketseat/unform';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
-import { AiOutlineHome, AiOutlineDollar } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineDollar, AiOutlineAlignLeft } from "react-icons/ai";
+import { FaHardHat } from "react-icons/fa";
 
 import Input from './Input';
 import { signOut } from '~/store/modules/auth/actions';
@@ -40,25 +41,26 @@ export default function Profile() {
           name="category"
           type="text"
           placeholder="Sua categoria"
-          icon={AiOutlineHome}
+          icon={FaHardHat}
         />
          <Input
-          name="city"
+          name="description"
           type="text"
-          placeholder="Sua cidade"
-          icon={AiOutlineHome}
+          placeholder="Sua descrição"
+          icon={AiOutlineAlignLeft}
         />
-        <Input
-          name="Price"
-          type="text"
-          placeholder="Seu preço"
-          icon={AiOutlineDollar}
-        />
-        <Input
+         <Input
           name="whatsapp"
           placeholder="Seu WhatsApp"
           icon={FiPhone}
         />
+        <Input
+          name="price"
+          type="text"
+          placeholder="Seu preço"
+          icon={AiOutlineDollar}
+        />
+       
         <hr />
         <Input
           name="oldPassword"
