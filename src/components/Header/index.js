@@ -17,6 +17,7 @@ export default function Header() {
         <nav>
           <img src={logo} alt="ServiçoAqui" width="65" height="65" />
           <Link to="/dashboard">DASHBOARD</Link>
+          <Link to="/announcement">ANÚNCIOS</Link>
         </nav>
 
         <aside>
