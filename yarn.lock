@@ -8471,6 +8471,11 @@ react-error-overlay@^6.0.3:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
   integrity sha512-bOUvMWFQVk5oz8Ded9Xb7WVdEi3QGLC8tH7HmYP0Fdp4Bn3qw0tRFmr5TW6mvahzvmrK4a6bqWGfCevBflP+Xw==
 
+react-icomoon@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/react-icomoon/-/react-icomoon-2.1.5.tgz#18724ad9514d38faf29cf4cef3165fffef4be448"
+  integrity sha512-d9XrpFSLnj1LTE89Ve6KGhJGqQZwSYF5LqKnLvv1NGK3SUMVt/KTaSjtIms7SU+cQ+XBTcRqZuguJPJgojHXSw==
+
 react-icons@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.8.0.tgz#229de5904809696c9f46932bd9b6126b2522866e"

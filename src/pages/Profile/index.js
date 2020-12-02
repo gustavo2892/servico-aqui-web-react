@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@rocketseat/unform';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
+import { AiOutlineHome, AiOutlineDollar } from "react-icons/ai";
 
 import Input from './Input';
 import { signOut } from '~/store/modules/auth/actions';
@@ -34,6 +35,24 @@ export default function Profile() {
           type="email"
           placeholder="Seu endereço de e-mail"
           icon={FiMail}
+        />
+         <Input
+          name="category"
+          type="text"
+          placeholder="Sua categoria"
+          icon={AiOutlineHome}
+        />
+         <Input
+          name="city"
+          type="text"
+          placeholder="Sua cidade"
+          icon={AiOutlineHome}
+        />
+        <Input
+          name="Price"
+          type="text"
+          placeholder="Seu preço"
+          icon={AiOutlineDollar}
         />
         <Input
           name="whatsapp"
