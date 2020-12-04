@@ -86,12 +86,10 @@ export default function Dashboard() {
             <strong>{time.time}</strong>
             <span>
               {time.appointment ? 
-              <div style={{height:'20px'}}>
-               {time.appointment.user.name }
-                <button style={{float:'right', marginTop:-15, border:'none', backgroundColor:'transparent'}}>
-                  <img src={whatsappIcon} style={{width: 20, border:'none'}}></img>
-                </button>
-              </div>
+             
+             time.appointment.user.name
+              
+              
               : 'Em aberto'}
             </span>
           </Time>
