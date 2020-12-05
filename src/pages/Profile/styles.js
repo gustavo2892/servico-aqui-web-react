@@ -17,11 +17,16 @@ export const Container = styled.div`
       font-weight: bold;
     }
 
+    h4 {
+      font: 18px 'Roboto', sans-serif;
+      margin-top: 20px;
+    }
+
     hr {
       border: 0;
       height: 1px;
       background: rgba(255, 255, 255, 0.2);
-      margin: 20px 0 20px;
+      margin: 5px 0 20px;
     }
 
     button {

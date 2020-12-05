@@ -10,7 +10,6 @@ export const Container = styled.div`
   border: 2px solid transparent;
   color: #FFF;
   display: flex;
-  align-items: center;
   & + div {
     margin-top: 8px;
   }
@@ -30,19 +29,13 @@ export const Container = styled.div`
     css`
       color: #007fff;
     `}
-
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-
-  input {
+  textarea {
     flex: 1;
     background: transparent;
     border: 0;
     color: #f4ede8;
+    overflow: hidden;
+    resize: none;
     &::placeholder {
       color: #FFF;
     }
@@ -65,8 +58,4 @@ export const Error = styled(Tooltip)`
       border-color: #c53030 transparent;
     }
   }
-`;
-
-export const Prefix = styled.span`
-  margin-right: 10px;
 `;

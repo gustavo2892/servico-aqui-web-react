@@ -5,12 +5,12 @@ import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
 import { AiOutlineDollar, AiOutlineAlignLeft } from "react-icons/ai";
 import { FaHardHat } from "react-icons/fa";
 
+import AvatarInput from '../../components/AvatarInput';
 import InputMask from '../../components/InputMask';
 import Input from '../../components/Input';
+import TextArea from '../../components/TextArea';
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
-
-import AvatarInput from '../../components/AvatarInput';
 
 import { Container } from './styles';
 
@@ -32,6 +32,8 @@ export default function Profile() {
       <Form ref={formRef} initialData={profile} onSubmit={handleSubmit}>
         <AvatarInput name="avatar_id" />
 
+        <h4>Informações Pessoais</h4>
+        <hr />
         <Input name="name" placeholder="Nome completo" icon={FiUser} />
         <Input
           name="email"
@@ -45,12 +47,6 @@ export default function Profile() {
           placeholder="Sua categoria"
           icon={FaHardHat}
         />
-         <Input
-          name="description"
-          type="text"
-          placeholder="Sua descrição"
-          icon={AiOutlineAlignLeft}
-        />
          <InputMask
           name="whatsapp"
           placeholder="Seu WhatsApp"
@@ -59,11 +55,20 @@ export default function Profile() {
         />
         <Input
           name="price"
-          type="text"
-          placeholder="Seu preço"
+          type="number"
+          step="0.01"
+          min="0"
+          placeholder="Preço base"
           icon={AiOutlineDollar}
         />
-
+        <h4>Mão de Obra</h4>
+        <hr />
+        <TextArea
+          name="description"
+          placeholder="Faça uma breve da sua mão de obra"
+          icon={AiOutlineAlignLeft}
+        />
+        <h4>Segurança da Conta</h4>
         <hr />
         <Input
           name="oldPassword"
