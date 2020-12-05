@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useField } from '@rocketseat/unform';
+import { useField } from '@unform/core';
 import api from '~/services/api';
 
 import { Container } from './styles';
@@ -31,7 +31,7 @@ export default function AvatarInput() {
     const response = await api.post('files', data);
 
     const { id, url } = response.data;
-
+    console.log('OnChange aqui => ', response.data);
     setFile(id);
     setPreview(url);
   }

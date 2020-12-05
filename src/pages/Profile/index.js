@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form } from '@rocketseat/unform';
+import { Form } from '@unform/web';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
-import { AiOutlineHome, AiOutlineDollar, AiOutlineAlignLeft } from "react-icons/ai";
+import { AiOutlineDollar, AiOutlineAlignLeft } from "react-icons/ai";
 import { FaHardHat } from "react-icons/fa";
 
-import Input from './Input';
+import InputMask from '../../components/InputMask';
+import Input from '../../components/Input';
 import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
-import AvatarInput from './AvatarInput';
+import AvatarInput from '../../components/AvatarInput';
 
 import { Container } from './styles';
 
 export default function Profile() {
+  const formRef = useRef(null);
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
 
@@ -24,10 +26,10 @@ export default function Profile() {
   function handleSignOut() {
     dispatch(signOut());
   }
-  console.log('Esse é o profile => ', profile);
+
   return (
     <Container>
-      <Form initialData={profile} onSubmit={handleSubmit}>
+      <Form ref={formRef} initialData={profile} onSubmit={handleSubmit}>
         <AvatarInput name="avatar_id" />
 
         <Input name="name" placeholder="Nome completo" icon={FiUser} />
@@ -49,10 +51,11 @@ export default function Profile() {
           placeholder="Sua descrição"
           icon={AiOutlineAlignLeft}
         />
-         <Input
+         <InputMask
           name="whatsapp"
           placeholder="Seu WhatsApp"
           icon={FiPhone}
+          mask="(99) 99999-9999"
         />
         <Input
           name="price"
@@ -60,7 +63,7 @@ export default function Profile() {
           placeholder="Seu preço"
           icon={AiOutlineDollar}
         />
-       
+
         <hr />
         <Input
           name="oldPassword"
