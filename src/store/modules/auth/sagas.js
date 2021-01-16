@@ -17,8 +17,6 @@ export function* signIn({ payload }) {
 
     const { token, user } = response.data;
 
-    console.log('Esse é o user => ', user);
-
     if (!user.provider) {
       toast.error('Usuário não é prestador');
       return;
@@ -44,7 +42,40 @@ export function* signUp({ payload }) {
       email,
       whatsapp,
       password,
+      provider: false,
+    });
+
+    toast.success('Perfil criado com sucesso!');
+
+    history.push('/');
+  } catch (err) {
+    toast.error('Falha no cadastro, verifique seus dados');
+
+    yield put(signFailure());
+  }
+}
+
+export function* signUpProvider({ payload }) {
+  try {
+    const {
+      name,
+      email,
+      whatsapp,
+      password,
+      category,
+      price,
+      description,
+    } = payload;
+
+    yield call(api.post, 'users', {
+      name,
+      email,
+      whatsapp,
+      password,
       provider: true,
+      category,
+      price,
+      description,
     });
 
     toast.success('Perfil criado com sucesso!');
@@ -75,5 +106,6 @@ export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
+  takeLatest('@auth/SIGN_UP_PROVIDER_REQUEST', signUpProvider),
   takeLatest('@auth/SIGN_OUT', signOut),
 ]);

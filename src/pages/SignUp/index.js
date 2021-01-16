@@ -22,7 +22,6 @@ const SignUp = () => {
   const handleSubmit = useCallback(
     async data => {
       data.provider = true;
-      console.log('Entrou aqui e esse é o data => ', data);
       try {
         formRef.current.setErrors({});
 

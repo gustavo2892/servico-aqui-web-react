@@ -19,6 +19,21 @@ export function signUpRequest(name, email, whatsapp, password) {
   };
 }
 
+export function signUpProviderRequest(
+  name,
+  email,
+  whatsapp,
+  password,
+  category,
+  price,
+  description
+) {
+  return {
+    type: '@auth/SIGN_UP_PROVIDER_REQUEST',
+    payload: { name, email, whatsapp, password, category, price, description },
+  };
+}
+
 export function signFailure() {
   return {
     type: '@auth/SIGN_FAILURE',

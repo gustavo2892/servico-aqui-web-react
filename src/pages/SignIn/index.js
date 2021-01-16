@@ -81,7 +81,7 @@ const SignIn = () => {
             <a href="forgot">Esqueci minha senha</a>
           </Form>
 
-          <Link to="/register">
+          <Link to="/choice-sign-up">
             <FiLogIn />
             Criar conta
           </Link>
