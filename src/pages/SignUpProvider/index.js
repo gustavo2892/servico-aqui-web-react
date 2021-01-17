@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
+import { AiOutlineAlignLeft } from 'react-icons/ai';
 
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -155,6 +156,7 @@ const SignUpProvider = () => {
             <TextArea
               name="description"
               placeholder="Faça uma breve descrição aqui"
+              icon={AiOutlineAlignLeft}
             />
           </Fieldset>
           <Footer>

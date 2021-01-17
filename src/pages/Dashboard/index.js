@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   format,
   subDays,
@@ -23,6 +24,7 @@ const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 export default function Dashboard() {
   const [date, setDate] = useState(new Date());
   const [schedule, setSchedule] = useState([]);
+  const profile = useSelector(state => state.user.profile);
 
   const dateFormatted = useMemo(
     () => format(date, "d 'de' MMMM", { locale: pt }),
@@ -69,31 +71,34 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <header>
-        <button type="button" onClick={handlePrevDay}>
-          <MdChevronLeft size={36} color="#fff" />
-        </button>
-        <strong>{dateFormatted}</strong>
-        <button type="button" onClick={handleNextDay}>
-          <MdChevronRight size={36} color="#fff" />
-        </button>
-      </header>
+      {profile.provider && (
+        <>
+          <header>
+            <button type="button" onClick={handlePrevDay}>
+              <MdChevronLeft size={36} color="#fff" />
+            </button>
+            <strong>{dateFormatted}</strong>
+            <button type="button" onClick={handleNextDay}>
+              <MdChevronRight size={36} color="#fff" />
+            </button>
+          </header>
 
-      <ul>
-        {schedule.map(time => (
-          <Time key={time.time} past={time.past} available={!time.appointment}>
-            <strong>{time.time}</strong>
-            <span>
-              {time.appointment ?
-
-             time.appointment.user.name
-
-
-              : 'Em aberto'}
-            </span>
-          </Time>
-        ))}
-      </ul>
+          <ul>
+            {schedule.map(time => (
+              <Time
+                key={time.time}
+                past={time.past}
+                available={!time.appointment}
+              >
+                <strong>{time.time}</strong>
+                <span>
+                  {time.appointment ? time.appointment.user.name : 'Em aberto'}
+                </span>
+              </Time>
+            ))}
+          </ul>
+        </>
+      )}
     </Container>
   );
 }

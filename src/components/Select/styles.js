@@ -11,7 +11,7 @@ export const customStyles = {
     // match with the menu
     borderRadius: state.isFocused ? '10px 10px 10px 10px' : 10,
     // Overwrittes the different states of border
-    borderColor: state.isFocused ? '#007fff' : 'none',
+    borderColor: state.isFocused ? '#007fff' : 'transparent',
     // Removes weird border around container
     boxShadow: state.isFocused ? null : null,
     '&:hover': {
