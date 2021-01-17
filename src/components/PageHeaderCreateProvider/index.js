@@ -14,7 +14,7 @@ const PageHeaderCreateProvider = props => {
   return (
     <Container>
       <TopBar>
-        <Link to="/signin">
+        <Link to="/">
           <FiArrowLeft style={{ marginTop: 25, marginRight: 20 }} /> Já tenho
           conta
         </Link>

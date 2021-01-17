@@ -21,13 +21,29 @@ const SignUpProvider = () => {
   const dispatch = useDispatch();
 
   const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'encanador', label: 'Encanador' },
+    { value: 'pintor', label: 'Pintor' },
+    { value: 'eletricista', label: 'Eletricista' },
+    { value: 'mestre-de-obra', label: 'Mestre de Obra' },
+    { value: 'pedreiro', label: 'Pedreiro' },
+    { value: 'ajudante-de-pedreiro', label: 'Ajudante de Pedreiro' },
+    { value: 'engenheiro-civil', label: 'Engenheiro Civil' },
+    { value: 'arquiteto', label: 'Arquiteto' },
+    { value: 'servicos-gerais', label: 'Serviços Gerais' },
+    { value: 'marido-de-aluguel', label: 'Marido de Aluguel' },
   ];
 
   const handleSubmit = useCallback(
     async data => {
+      if (!data.category) {
+        addToast({
+          type: 'error',
+          title: 'Erro na cadastro',
+          description: 'Selecione uma categoria',
+        });
+        return;
+      }
+
       try {
         formRef.current.setErrors({});
         const schema = Yup.object().shape({
