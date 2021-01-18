@@ -99,6 +99,9 @@ export default function Dashboard() {
           </ul>
         </>
       )}
+      {!profile.provider && (
+        <div>Tela que será mostrado todos os prestadores de serviço</div>
+      )}
     </Container>
   );
 }

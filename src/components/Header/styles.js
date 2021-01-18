@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   background: #fff;
@@ -20,7 +21,6 @@ export const Content = styled.div`
     img {
       margin-right: 20px;
       padding-right: 20px;
-      border-right: 1px solid #eee;
     }
 
     a {
@@ -29,6 +29,9 @@ export const Content = styled.div`
 
       & + a {
         margin-left: 15px;
+      }
+      &:hover {
+        color: ${shade(0.2, '#007fff')};
       }
     }
   }

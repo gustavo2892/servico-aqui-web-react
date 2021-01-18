@@ -10,6 +10,7 @@ import ChoiceSignUp from '../pages/ChoiceSignUp';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Announcement from '../pages/Announcement';
+import CreateAnnouncement from '../pages/CreateAnnouncement';
 
 export default function Routes() {
   return (
@@ -22,6 +23,11 @@ export default function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
       <Route path="/announcement" component={Announcement} isPrivate />
+      <Route
+        path="/create-announcement"
+        component={CreateAnnouncement}
+        isPrivate
+      />
     </Switch>
   );
 }

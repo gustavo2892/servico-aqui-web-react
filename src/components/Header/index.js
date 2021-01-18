@@ -15,9 +15,17 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <img src={logo} alt="ServiçoAqui" width="65" height="65" />
-          <Link to="/dashboard">AGENDA</Link>
-          <Link to="/announcement">ANÚNCIOS</Link>
+          <Link to="/dashboard">
+            <img src={logo} alt="ServiçoAqui" width="65" height="65" />
+          </Link>
+
+          <Link to="/dashboard">
+            {profile.provider ? 'AGENDA' : 'PRESTADORES'}
+          </Link>
+          {profile.provider && <Link to="/announcement">ANÚNCIOS</Link>}
+          {!profile.provider && (
+            <Link to="/create-announcement">CRIAR ANÚNCIO</Link>
+          )}
         </nav>
 
         <aside>
@@ -29,10 +37,7 @@ export default function Header() {
               <Link to="/profile">Meu perfil</Link>
             </div>
             <img
-              src={
-                (profile.avatar && profile.avatar.url) ||
-                avatar
-              }
+              src={(profile.avatar && profile.avatar.url) || avatar}
               alt="Avatar"
             />
           </Profile>

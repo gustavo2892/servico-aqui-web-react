@@ -8,9 +8,7 @@ export default function Announcement() {
 
   useEffect(() => {
     async function loadAnnouncements() {
-      console.log('Entrou aqui');
       const response = await api.get('announcements/all');
-      console.log('Esse é o response => ', response);
       const { data } = response;
 
       setAnnouncements(data);
@@ -20,14 +18,14 @@ export default function Announcement() {
   }, []);
 
   return (
-      <AnnouncementList>
-        {announcements.map(announcement => (
-          <li key={announcement.id}>
-            <strong>{announcement.title}</strong>
-            <p>{announcement.description}</p>
-            <span>{announcement.whatsapp}</span>
-          </li>
-        ))}
-      </AnnouncementList>
+    <AnnouncementList>
+      {announcements.map(announcement => (
+        <li key={announcement.id}>
+          <strong>{announcement.title}</strong>
+          <p>{announcement.description}</p>
+          <span>{announcement.whatsapp}</span>
+        </li>
+      ))}
+    </AnnouncementList>
   );
 }
