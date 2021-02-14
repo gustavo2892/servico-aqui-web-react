@@ -11,6 +11,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Announcement from '../pages/Announcement';
 import CreateAnnouncement from '../pages/CreateAnnouncement';
+import Provider from '../pages/Provider';
 
 export default function Routes() {
   return (
@@ -28,6 +29,7 @@ export default function Routes() {
         component={CreateAnnouncement}
         isPrivate
       />
+      <Route path="/provider/:id" component={Provider} isPrivate />
     </Switch>
   );
 }

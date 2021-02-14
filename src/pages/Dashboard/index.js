@@ -15,9 +15,10 @@ import {
 import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import api from '~/services/api';
 
+import api from '~/services/api';
 import { Container, Time } from './styles';
+import ProvidersList from '../../components/ProvidersList';
 
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
@@ -25,6 +26,18 @@ export default function Dashboard() {
   const [date, setDate] = useState(new Date());
   const [schedule, setSchedule] = useState([]);
   const profile = useSelector(state => state.user.profile);
+
+  const [providers, setProviders] = useState([]);
+
+  useEffect(() => {
+    async function loadProviders() {
+      const response = await api.get('providers');
+
+      setProviders(response.data);
+    }
+
+    loadProviders();
+  }, []);
 
   const dateFormatted = useMemo(
     () => format(date, "d 'de' MMMM", { locale: pt }),
@@ -70,7 +83,7 @@ export default function Dashboard() {
   }
 
   return (
-    <Container>
+    <Container isProvider={profile.provider}>
       {profile.provider && (
         <>
           <header>
@@ -99,9 +112,7 @@ export default function Dashboard() {
           </ul>
         </>
       )}
-      {!profile.provider && (
-        <div>Tela que será mostrado todos os prestadores de serviço</div>
-      )}
+      {!profile.provider && <ProvidersList providers={providers} />}
     </Container>
   );
 }

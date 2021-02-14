@@ -1,11 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 600px;
   margin: 50px auto;
 
   display: flex;
   flex-direction: column;
+
+  ${props =>
+    props.isProvider &&
+    css`
+      max-width: 600px;
+
+      ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 15px;
+        margin-top: 30px;
+      }
+    `}
+
+  ${props =>
+    !props.isProvider &&
+    css`
+      margin: 50px 100px 50px 100px;
+    `}
 
   header {
     display: flex;
@@ -23,14 +41,6 @@ export const Container = styled.div`
       margin: 0 15px;
     }
   }
-
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-    margin-top: 30px;
-  }
-  
 `;
 
 export const Time = styled.li`
