@@ -105,7 +105,9 @@ export default function Dashboard() {
               >
                 <strong>{time.time}</strong>
                 <span>
-                  {time.appointment ? time.appointment.user.name : 'Em aberto'}
+                  {time.appointment
+                    ? `${time.appointment.user.name} - ${time.appointment.user.whatsapp}`
+                    : 'Em aberto'}
                 </span>
               </Time>
             ))}

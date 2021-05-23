@@ -1,11 +1,21 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
+import { FaEnvelope, FaHotel, FaHospitalAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { AiOutlineAlignLeft } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Container, Footer, Fieldset, Content } from './styles';
+import verifyCep from 'utils/verifyCep';
+import viaCep from 'services/viaCep';
+import {
+  Container,
+  Footer,
+  Fieldset,
+  Content,
+  AddressContainer,
+} from './styles';
 import PageHeader from '../../components/PageHeaderCreateProvider';
 import warningIcon from '../../assets/images/icons/warning.svg';
 import { useToast } from '../../hooks/toast';
@@ -20,6 +30,7 @@ const SignUpProvider = () => {
   const formRef = useRef(null);
   const { addToast } = useToast();
   const dispatch = useDispatch();
+  const [loadingCep, setLoadingCep] = useState(null);
 
   const options = [
     { value: 'encanador', label: 'Encanador' },
@@ -56,7 +67,16 @@ const SignUpProvider = () => {
           whatsapp: Yup.string().required('WhatsApp obrigatório'),
           confirmPassword: Yup.string().min(6, 'No mínimo 6 dígitos'),
           price: Yup.string().required('Valor do Serviço é obrigatório'),
-          description: Yup.string().required(),
+          description: Yup.string().required('Descrição é obrigatório'),
+          cep: Yup.string().test(
+            'validation-cep',
+            'Digite um Cep válido',
+            function(value) {
+              return verifyCep(value);
+            }
+          ),
+          city: Yup.string().required('Digite um Cep válido'),
+          uf: Yup.string().required('Digite um Cep válido'),
         });
         await schema.validate(data, {
           abortEarly: false,
@@ -79,6 +99,9 @@ const SignUpProvider = () => {
           category,
           price,
           description,
+          cep,
+          city,
+          uf,
         } = data;
 
         dispatch(
@@ -89,7 +112,10 @@ const SignUpProvider = () => {
             password,
             category,
             price,
-            description
+            description,
+            cep,
+            city,
+            uf
           )
         );
       } catch (err) {
@@ -112,6 +138,32 @@ const SignUpProvider = () => {
     },
     [addToast, dispatch]
   );
+
+  const onChangeCep = async e => {
+    const cepAnalysis = verifyCep(e.target.value);
+
+    if (cepAnalysis) {
+      setLoadingCep(true);
+
+      const response = await viaCep.get(`${e.target.value}/json/`);
+
+      if (response.status === 200 && response.data.localidade) {
+        formRef.current.setData({
+          city: response.data.localidade,
+          uf: response.data.uf,
+        });
+      } else {
+        toast.error('Digite um CEP válido');
+        formRef.current.clearField('city');
+        formRef.current.clearField('uf');
+      }
+    } else {
+      formRef.current.clearField('city');
+      formRef.current.clearField('uf');
+    }
+
+    setLoadingCep(false);
+  };
 
   return (
     <Container>
@@ -140,6 +192,31 @@ const SignUpProvider = () => {
               icon={FiLock}
               placeholder="Confirme sua Senha"
               type="password"
+            />
+          </Fieldset>
+          <Fieldset>
+            <legend>Endereço</legend>
+            <InputMask
+              name="cep"
+              icon={FaEnvelope}
+              placeholder="CEP"
+              mask="99999-999"
+              onChange={e => onChangeCep(e)}
+              loading={loadingCep}
+            />
+            <Input
+              name="city"
+              icon={FaHotel}
+              placeholder="Cidade"
+              type="text"
+              disabled
+            />
+            <Input
+              name="uf"
+              placeholder="UF"
+              type="text"
+              icon={FaHospitalAlt}
+              disabled
             />
           </Fieldset>
           <Fieldset>

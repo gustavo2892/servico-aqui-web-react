@@ -26,12 +26,19 @@ import {
   Time,
 } from './styles';
 import avatar from '~/assets/avatar.png';
+import ModalConfirmation from '~/components/ModalConfirmation';
 
 function Provider() {
   const [date, setDate] = useState(new Date());
   const [schedule, setSchedule] = useState([]);
   const [provider, setProvider] = useState({});
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(null);
+  const [type, setType] = useState('info');
+  const [message, setMessage] = useState(
+    'Tem certeza que deseja marcar horário com o prestador?'
+  );
+  const [timeProvider, setTimeProvider] = useState('');
 
   const { id } = useParams();
 
@@ -67,7 +74,51 @@ function Provider() {
   function handleNextDay() {
     setDate(addDays(date, 1));
   }
-  console.log('Esse é o provider => ', provider);
+
+  async function handleAddAppointment(time) {
+    await api.post('appointments', {
+      provider_id: provider.id,
+      date: time,
+    });
+    return true;
+  }
+
+  function hideAlert() {
+    async function loadAvailable() {
+      setLoading(true);
+      const response = await api.get(`providers/${id}/available`, {
+        params: {
+          date: date.getTime(),
+        },
+      });
+
+      const responseProvider = await api.get(`providers/${id}`);
+
+      setProvider(responseProvider.data);
+
+      setLoading(false);
+      setSchedule(response.data);
+    }
+
+    loadAvailable();
+    setAlert(null);
+  }
+
+  function openModal(time) {
+    const getAlert = () => (
+      <ModalConfirmation
+        message="Tem certeza que deseja marcar horário com o prestador?"
+        messageSuccess="Horário marcado com sucesso"
+        onConfirm={() => handleAddAppointment()}
+        onCancel={() => hideAlert()}
+        time={time}
+        providerId={provider.id}
+      />
+    );
+    setTimeProvider(time);
+    setAlert(getAlert());
+  }
+
   return loading ? (
     <Loading />
   ) : (
@@ -101,13 +152,23 @@ function Provider() {
         </header>
         <ul>
           {schedule.map(time => (
-            <Time key={time.time} past={time.past} available={time.available}>
+            <Time
+              key={time.time}
+              past={time.past}
+              available={time.available}
+              onClick={() => {
+                if (time.available) {
+                  openModal(time.value);
+                }
+              }}
+            >
               <strong>{time.time}</strong>
               <span>{time.available ? 'Marcar horário' : 'Indisponível'}</span>
             </Time>
           ))}
         </ul>
       </ContainerPageDate>
+      {alert}
     </Container>
   );
 }

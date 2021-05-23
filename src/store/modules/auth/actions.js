@@ -26,11 +26,25 @@ export function signUpProviderRequest(
   password,
   category,
   price,
-  description
+  description,
+  cep,
+  city,
+  uf
 ) {
   return {
     type: '@auth/SIGN_UP_PROVIDER_REQUEST',
-    payload: { name, email, whatsapp, password, category, price, description },
+    payload: {
+      name,
+      email,
+      whatsapp,
+      password,
+      category,
+      price,
+      description,
+      cep,
+      city,
+      uf,
+    },
   };
 }
 
