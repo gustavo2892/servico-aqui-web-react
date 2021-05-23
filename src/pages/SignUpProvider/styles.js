@@ -90,3 +90,9 @@ export const Fieldset = styled.fieldset`
     }
   }
 `;
+
+export const AddressContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+`;

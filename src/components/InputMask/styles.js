@@ -58,3 +58,16 @@ export const Error = styled(Tooltip)`
     }
   }
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;

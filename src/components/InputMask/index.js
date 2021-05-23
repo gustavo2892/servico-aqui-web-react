@@ -2,10 +2,16 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 import InputMask from 'react-input-mask';
+import SmallLoading from '../SmallLoading';
+import { Container, Error, LoadingContainer } from './styles';
 
-import { Container, Error } from './styles';
-
-const InputMaskComponent = ({ name, icon: Icon, mask, ...rest }) => {
+const InputMaskComponent = ({
+  name,
+  icon: Icon,
+  mask,
+  loading = false,
+  ...rest
+}) => {
   const inputRef = useRef(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -47,6 +53,11 @@ const InputMaskComponent = ({ name, icon: Icon, mask, ...rest }) => {
         <Error title={error}>
           <FiAlertCircle color="#c53030" size={20} />
         </Error>
+      )}
+      {loading && (
+        <LoadingContainer>
+          <SmallLoading type="spin" height={30} width={30} />
+        </LoadingContainer>
       )}
     </Container>
   );

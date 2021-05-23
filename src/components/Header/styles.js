@@ -4,6 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.div`
   background: #fff;
   padding: 0 30px;
+  box-shadow: 0px 0px 5px black;
 `;
 
 export const Content = styled.div`

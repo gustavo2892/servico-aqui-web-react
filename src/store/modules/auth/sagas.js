@@ -38,6 +38,8 @@ export function* signUp({ payload }) {
       whatsapp,
       password,
       provider: false,
+      type: 'default',
+      status: 'Ativo',
     });
 
     toast.success('Perfil criado com sucesso!');
@@ -60,6 +62,9 @@ export function* signUpProvider({ payload }) {
       category,
       price,
       description,
+      cep,
+      city,
+      uf,
     } = payload;
 
     yield call(api.post, 'users', {
@@ -71,6 +76,11 @@ export function* signUpProvider({ payload }) {
       category,
       price,
       description,
+      type: 'default',
+      status: 'Ativo',
+      cep,
+      city,
+      uf,
     });
 
     toast.success('Perfil criado com sucesso!');

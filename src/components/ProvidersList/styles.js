@@ -47,10 +47,13 @@ ProvidersSelect.ImageContainer = styled.div`
 ProvidersSelect.LinkContainer = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 20px;
-  align-items: flex-end;
+
+  span {
+    cursor: pointer;
+  }
 
   a {
     color: #000;
