@@ -1,8 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from '@unform/web';
 import { FiMail, FiUser, FiLock, FiPhone } from 'react-icons/fi';
+import { FaEnvelope, FaHotel, FaHospitalAlt } from 'react-icons/fa';
 import { AiOutlineDollar, AiOutlineAlignLeft } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+
+import verifyCep from 'utils/verifyCep';
+import viaCep from 'services/viaCep';
+import { useToast } from '../../hooks/toast';
+
 
 import AvatarInput from '../../components/AvatarInput';
 import InputMask from '../../components/InputMask';
@@ -18,6 +25,7 @@ export default function Profile() {
   const formRef = useRef(null);
   const dispatch = useDispatch();
   const profile = useSelector(state => state.user.profile);
+  const [loadingCep, setLoadingCep] = useState(null);
 
   function handleSubmit(data) {
     data.provider = profile.provider;
@@ -27,6 +35,8 @@ export default function Profile() {
   function handleSignOut() {
     dispatch(signOut());
   }
+
+  console.log('profile', profile)
 
   const options = [
     { value: 'encanador', label: 'Encanador' },
@@ -40,6 +50,32 @@ export default function Profile() {
     { value: 'servicos-gerais', label: 'Serviços Gerais' },
     { value: 'marido-de-aluguel', label: 'Marido de Aluguel' },
   ];
+
+  const onChangeCep = async e => {
+    const cepAnalysis = verifyCep(e.target.value);
+
+    if (cepAnalysis) {
+      setLoadingCep(true);
+
+      const response = await viaCep.get(`${e.target.value}/json/`);
+
+      if (response.status === 200 && response.data.localidade) {
+        formRef.current.setData({
+          city: response.data.localidade,
+          uf: response.data.uf,
+        });
+      } else {
+        toast.error('Digite um CEP válido');
+        formRef.current.clearField('city');
+        formRef.current.clearField('uf');
+      }
+    } else {
+      formRef.current.clearField('city');
+      formRef.current.clearField('uf');
+    }
+
+    setLoadingCep(false);
+  };
 
   return (
     <Container>
@@ -61,6 +97,38 @@ export default function Profile() {
           icon={FiPhone}
           mask="(99) 99999-9999"
         />
+         {profile.provider && (
+          <>
+            <h4>Endereço</h4>
+            <hr />
+            <InputMask
+              name="cep"
+              type="cep"
+              icon={FaEnvelope}
+              placeholder="CEP"
+              mask="99999-999"
+              onChange={e => onChangeCep(e)}
+              loading={loadingCep}
+            />
+            <Input
+              name="city"
+              type="city"
+              icon={FaHotel}
+              placeholder="Cidade"
+              type="text"
+              disabled
+            />
+            <Input
+              name="uf"
+              type="uf"
+              placeholder="UF"
+              type="text"
+              icon={FaHospitalAlt}
+              disabled
+            />
+         
+          </>
+        )}
         {profile.provider && (
           <>
             <h4>Mão de Obra</h4>

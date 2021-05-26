@@ -15,6 +15,9 @@ export function* updateProfile({ payload }) {
       category,
       description,
       price,
+      cep,
+      city,
+      uf,
       ...rest
     } = payload.data;
 
@@ -26,6 +29,9 @@ export function* updateProfile({ payload }) {
       description,
       price,
       avatar_id,
+      cep,
+      city,
+      uf,
       ...(rest.oldPassword ? rest : {}),
     };
 
