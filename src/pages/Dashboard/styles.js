@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import Tooltip from '../../components/Tooltip'
-
 export const Container = styled.div`
   margin: 50px auto;
 

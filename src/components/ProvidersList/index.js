@@ -31,23 +31,25 @@ function ProvidersList({ providers }) {
             </ProvidersSelect.ImageContainer>
             <strong>{provider.name}</strong>
             <span>{provider.category.toUpperCase()}</span>
-            <span>
-              {provider.city} - {provider.uf}
-            </span>
+            {provider.city ? (
+              <span>
+                {provider.city} - {provider.uf}
+              </span>
+            ) : (
+              <span>Localidade não Informada.</span>
+            )}
             <ProvidersSelect.LinkContainer>
               <span onClick={() => openModal(provider.id)}>Denunciar</span>
               <Link to={`/provider/${provider.id}`}>Ver perfil</Link>
             </ProvidersSelect.LinkContainer>
           </li>
         ))}
-       
       </ProvidersSelect>
-        {providers.length === 0 && (
-          <div style={{ justifyContent: 'center', display: 'flex' }}>
-              <h1>Desculpe, não encontramos nenhum prestador.</h1>
-          </div>
-        
-        )}
+      {providers.length === 0 && (
+        <div style={{ justifyContent: 'center', display: 'flex' }}>
+          <h1>Desculpe, não encontramos nenhum prestador.</h1>
+        </div>
+      )}
       {alert}
     </>
   );
