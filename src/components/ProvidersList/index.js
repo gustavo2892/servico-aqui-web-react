@@ -40,7 +40,14 @@ function ProvidersList({ providers }) {
             </ProvidersSelect.LinkContainer>
           </li>
         ))}
+       
       </ProvidersSelect>
+        {providers.length === 0 && (
+          <div style={{ justifyContent: 'center', display: 'flex' }}>
+              <h1>Desculpe, não encontramos nenhum prestador.</h1>
+          </div>
+        
+        )}
       {alert}
     </>
   );

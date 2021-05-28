@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import Tooltip from '../../components/Tooltip'
+
 export const Container = styled.div`
   margin: 50px auto;
 
@@ -63,3 +65,68 @@ export const Time = styled.li`
     color: ${props => (props.available ? '#999' : '#666')};
   }
 `;
+
+export const ContainerSearch = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content:center; 
+  align-items: center;
+`;
+
+export const ContainerSearchInput = styled.div`
+  background: #3db0f7;
+  border-radius: 10px;
+  padding: 16px;
+  width: 30%;
+  border: 2px solid transparent;
+  color: #FFF;
+  display: flex;
+  justify-content:center; 
+  align-items: center;
+  & + div {
+    margin-top: 8px;
+  }
+  ${props =>
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
+  ${props =>
+    props.isFocused &&
+    css`
+      color: #007fff;
+      border-color: #007fff;
+    `}
+  ${props =>
+    props.isFilled &&
+    css`
+      color: #007fff;
+    `}
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+  input {
+    flex: 1;
+    width: 30%;
+    background: transparent;
+    border: 0;
+    color: #f4ede8;
+    &::placeholder {
+      color: #FFF;
+    }
+  }
+  svg {
+    margin-right: 16px;
+  }
+`;
+
+
+export const Prefix = styled.span`
+  margin-right: 10px;
+`;
+

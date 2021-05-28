@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
 import { useSelector } from 'react-redux';
 import {
   format,
@@ -15,9 +21,16 @@ import {
 import { utcToZonedTime } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-
+import { FiSearch } from 'react-icons/fi';
 import api from '~/services/api';
-import { Container, Time } from './styles';
+
+import {
+  Container,
+  Time,
+  ContainerSearchInput,
+  ContainerSearch,
+  Prefix,
+} from './styles';
 import ProvidersList from '../../components/ProvidersList';
 
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -28,6 +41,19 @@ export default function Dashboard() {
   const profile = useSelector(state => state.user.profile);
 
   const [providers, setProviders] = useState([]);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+  const inputRef = useRef(null);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+
+    setIsFilled(!!inputRef.current.value);
+  }, []);
 
   useEffect(() => {
     async function loadProviders() {
@@ -43,6 +69,11 @@ export default function Dashboard() {
     () => format(date, "d 'de' MMMM", { locale: pt }),
     [date]
   );
+
+  async function searchProviders(text) {
+    const response = await api.get(`search/providers?query=${text}`);
+    setProviders(response.data.providers);
+  }
 
   useEffect(() => {
     async function loadSchedule() {
@@ -114,7 +145,28 @@ export default function Dashboard() {
           </ul>
         </>
       )}
-      {!profile.provider && <ProvidersList providers={providers} />}
+      {!profile.provider && (
+        <>
+          <ContainerSearch>
+            <ContainerSearchInput isFilled={isFilled} isFocused={isFocused}>
+              <FiSearch size={20} />
+              <input
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                autoComplete="off"
+                name="search"
+                type="text"
+                ref={inputRef}
+                placeholder="Pesquise..."
+                onChange={e => {
+                  searchProviders(e.target.value);
+                }}
+              />
+            </ContainerSearchInput>
+          </ContainerSearch>
+          <ProvidersList providers={providers} />
+        </>
+      )}
     </Container>
   );
 }
