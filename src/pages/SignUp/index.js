@@ -10,6 +10,7 @@ import { Container, Content, AnimationContainer, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import InputPassword from '../../components/InputPassword';
 import InputMask from '../../components/InputMask';
 import { signUpRequest } from '~/store/modules/auth/actions';
 import { useToast } from '../../hooks/toast';
@@ -90,18 +91,12 @@ const SignUp = () => {
               placeholder="WhatsApp"
               mask="(99) 99999-9999"
             />
-            <Input
-              name="password"
-              icon={FiLock}
-              placeholder="Senha"
-              type="password"
-            />
+            <InputPassword name="password" icon={FiLock} placeholder="Senha" />
 
-            <Input
+            <InputPassword
               name="confirmPassword"
               icon={FiLock}
               placeholder="Confirme sua Senha"
-              type="password"
             />
             <Button type="submit">Cadastrar</Button>
           </Form>

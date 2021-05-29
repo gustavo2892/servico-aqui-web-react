@@ -10,10 +10,10 @@ import verifyCep from 'utils/verifyCep';
 import viaCep from 'services/viaCep';
 import { useToast } from '../../hooks/toast';
 
-
 import AvatarInput from '../../components/AvatarInput';
 import InputMask from '../../components/InputMask';
 import Input from '../../components/Input';
+import InputPassword from '../../components/InputPassword';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
 import { signOut } from '~/store/modules/auth/actions';
@@ -36,7 +36,7 @@ export default function Profile() {
     dispatch(signOut());
   }
 
-  console.log('profile', profile)
+  console.log('profile', profile);
 
   const options = [
     { value: 'encanador', label: 'Encanador' },
@@ -97,7 +97,7 @@ export default function Profile() {
           icon={FiPhone}
           mask="(99) 99999-9999"
         />
-         {profile.provider && (
+        {profile.provider && (
           <>
             <h4>Endereço</h4>
             <hr />
@@ -126,7 +126,6 @@ export default function Profile() {
               icon={FaHospitalAlt}
               disabled
             />
-         
           </>
         )}
         {profile.provider && (
@@ -159,19 +158,19 @@ export default function Profile() {
         )}
         <h4>Segurança da Conta</h4>
         <hr />
-        <Input
+        <InputPassword
           name="oldPassword"
           type="password"
           placeholder="Sua senha atual"
           icon={FiLock}
         />
-        <Input
+        <InputPassword
           name="password"
           type="password"
           placeholder="Nova senha"
           icon={FiLock}
         />
-        <Input
+        <InputPassword
           name="confirmPassword"
           type="password"
           placeholder="Confirmação de senha"

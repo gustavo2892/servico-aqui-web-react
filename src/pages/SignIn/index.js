@@ -5,6 +5,7 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
+import InputPassword from '../../components/InputPassword';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, AnimationContainer, Background } from './styles';
 import logoImg from '../../assets/logo.svg';
@@ -69,16 +70,9 @@ const SignIn = () => {
 
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-            <Input
-              name="password"
-              icon={FiLock}
-              placeholder="Senha"
-              type="password"
-            />
+            <InputPassword name="password" icon={FiLock} placeholder="Senha" />
 
             <Button type="submit">Entrar</Button>
-
-            <a href="forgot">Esqueci minha senha</a>
           </Form>
 
           <Link to="/choice-sign-up">
