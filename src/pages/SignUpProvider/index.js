@@ -21,6 +21,7 @@ import warningIcon from '../../assets/images/icons/warning.svg';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
+import InputPassword from '../../components/InputPassword';
 import InputMask from '../../components/InputMask';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
@@ -181,13 +182,13 @@ const SignUpProvider = () => {
               placeholder="WhatsApp"
               mask="(99) 99999-9999"
             />
-            <Input
+            <InputPassword
               name="password"
               icon={FiLock}
               placeholder="Senha"
               type="password"
             />
-            <Input
+            <InputPassword
               name="confirmPassword"
               icon={FiLock}
               placeholder="Confirme sua Senha"
