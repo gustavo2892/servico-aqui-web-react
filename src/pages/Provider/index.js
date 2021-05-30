@@ -138,7 +138,9 @@ function Provider() {
         <span>Preço</span>
         <h3>R$ {provider.price}</h3>
         <span>Descrição</span>
-        <h3>{provider.description}</h3>
+        <h3 style={{ textAlign: 'center', justifyContent: 'center' }}>
+          {provider.description}
+        </h3>
       </SideMenu>
       <ContainerPageDate>
         <header>

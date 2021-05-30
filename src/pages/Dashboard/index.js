@@ -33,7 +33,7 @@ import {
 } from './styles';
 import ProvidersList from '../../components/ProvidersList';
 
-const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 export default function Dashboard() {
   const [date, setDate] = useState(new Date());
